@@ -1,9 +1,7 @@
 package service;
 
-import model.Apple;
 import model.Food;
 
-import static model.constants.Colour.RED_APPLE;
 
 public class ShoppingCart {
 
@@ -27,16 +25,8 @@ public class ShoppingCart {
     public void totalAmountWithDiscount(Food[] cart) {
         double totalPrice = 0;
         for (int i = 0; i < cart.length; i++) {
-            //проверяем, является ли текущий объект экземпляром класса Apple
-            if (cart[i] instanceof Apple) {
-                //приводим тип
-                Apple apple = (Apple) cart[i];
-                if (apple.getColour() == RED_APPLE) {
-                    totalPrice = totalPrice + apple.getAmount() * apple.getDiscount();
-                }
-                else {
-                    totalPrice = totalPrice + apple.getAmount() * apple.getPrice();
-                }
+            if (cart[i].getDiscount() != 0) {
+                totalPrice = totalPrice + cart[i].getDiscount();
             }
             else {
                 totalPrice = totalPrice + cart[i].getAmount() * cart[i].getPrice();
